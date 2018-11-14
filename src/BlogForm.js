@@ -5,10 +5,21 @@ import { Form, FormGroup, FormText, Label, Input, Button } from 'reactstrap';
 class BlogForm extends Component {
   constructor(props) {
     super(props);
+
+    let postTitle = '';
+    let postDescription = '';
+    let postBody = '';
+
+    try {
+      postTitle = this.props.location.state.postToEdit.postTitle;
+      postDescription = this.props.location.state.postToEdit.postDescription;
+      postBody = this.props.location.state.postToEdit.postBody;
+    } catch (err) {}
+
     this.state = {
-      postTitle: '',
-      postDescription: '',
-      postBody: ''
+      postTitle,
+      postDescription,
+      postBody
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,15 +31,34 @@ class BlogForm extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.addPost(this.state);
+    if (this.props.isEdit) {
+      let postToEdit = {
+        ...this.state,
+        id: this.props.location.state.postToEdit.id
+      };
+      this.props.editPost(postToEdit);
+    } else {
+      this.props.addPost(this.state);
+    }
     this.setState({
       postTitle: '',
       postDescription: '',
       postBody: ''
     });
+    this.props.history.push('/');
   }
 
   render() {
+    // let post;
+    // if (this.props.isEdit) {
+    //   post = this.props.posts.find(
+    //     post => post.id === this.props.match.params.postid
+    //   );
+    //   if (!post) {
+    //     return <Redirect to="/notFound" />;
+    //   }
+    // }
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <h3>New Post</h3>

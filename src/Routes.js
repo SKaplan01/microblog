@@ -22,12 +22,23 @@ class Routes extends Component {
         <Route
           path="/edit/:postid"
           render={props => (
-            <BlogForm {...props} editPost={this.props.editPost} />
+            <BlogForm
+              {...props}
+              editPost={this.props.editPost}
+              posts={this.props.posts}
+              isEdit={true}
+            />
           )}
         />
         <Route
           path="/:postid"
-          render={props => <Post {...props} posts={this.props.posts} />}
+          render={props => (
+            <Post
+              {...props}
+              deletePost={this.props.deletePost}
+              posts={this.props.posts}
+            />
+          )}
         />
         <Route render={() => <NotFound />} />
       </Switch>
