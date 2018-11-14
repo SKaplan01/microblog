@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Home from './Home';
-import Form from './Form';
+import BlogForm from './BlogForm';
 import Post from './Post';
 import NotFound from './NotFound';
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -9,10 +9,26 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" render={() => <Home />} />
-        <Route exact path="/new" render={() => <Form />} />
-        <Route path="/edit/:postid" render={props => <Form {...props} />} />
-        <Route path="/:postid" render={props => <Post {...props} />} />
+        <Route
+          exact
+          path="/"
+          render={() => <Home posts={this.props.posts} />}
+        />
+        <Route
+          exact
+          path="/new"
+          render={props => <BlogForm {...props} addPost={this.props.addPost} />}
+        />
+        <Route
+          path="/edit/:postid"
+          render={props => (
+            <BlogForm {...props} editPost={this.props.editPost} />
+          )}
+        />
+        <Route
+          path="/:postid"
+          render={props => <Post {...props} posts={this.props.posts} />}
+        />
         <Route render={() => <NotFound />} />
       </Switch>
     );
