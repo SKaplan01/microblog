@@ -6,6 +6,8 @@ class BlogForm extends Component {
   constructor(props) {
     super(props);
 
+    //declare variables that will be added to state
+    //initially are empty strings, if form is an edit form then change these variables to the props passed in location.state
     let postTitle = '';
     let postDescription = '';
     let postBody = '';
@@ -29,6 +31,8 @@ class BlogForm extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
+  //if prop isEdit is true then invoke function that edit posts that is passed down from app
+  //if isEdit is falsy then invoke function that add posts that is passed down from app
   handleSubmit(evt) {
     evt.preventDefault();
     if (this.props.isEdit) {
@@ -40,6 +44,8 @@ class BlogForm extends Component {
     } else {
       this.props.addPost(this.state);
     }
+
+    //reset state and redirect to home when form is submitted
     this.setState({
       postTitle: '',
       postDescription: '',
@@ -49,16 +55,6 @@ class BlogForm extends Component {
   }
 
   render() {
-    // let post;
-    // if (this.props.isEdit) {
-    //   post = this.props.posts.find(
-    //     post => post.id === this.props.match.params.postid
-    //   );
-    //   if (!post) {
-    //     return <Redirect to="/notFound" />;
-    //   }
-    // }
-
     return (
       <Form onSubmit={this.handleSubmit}>
         <h3>New Post</h3>

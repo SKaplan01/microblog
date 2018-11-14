@@ -4,6 +4,8 @@ import Header from './Header';
 // import './App.css';
 import uuid from 'uuid/v4';
 
+//App component holds state => array of posts which are objects
+//App renders routes and header components
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,16 +15,18 @@ class App extends Component {
     this.deletePost = this.deletePost.bind(this);
   }
 
+  //Add post and set state
   addPost(post) {
     post.id = uuid();
     this.setState(st => ({ posts: [...st.posts, post] }));
   }
-
+  //Remove post from state
   deletePost(id) {
     let newPosts = this.state.posts.filter(post => post.id !== id);
     this.setState({ posts: newPosts });
   }
 
+  //Update state with new, edited post
   editPost(post) {
     let index = this.state.posts.findIndex(p => p.id === post.id);
     console.log(index);

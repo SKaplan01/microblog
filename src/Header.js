@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Jumbotron } from 'reactstrap';
 
+//Header appears on all pages - contains link to homepage and a link to add a new post
 class Header extends Component {
   render() {
     return (
