@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import CommentList from './CommentList';
+import NotFound from './NotFound';
 
 //Actual post => displays title, description and body
 //Can edit and remove post
@@ -23,7 +24,7 @@ class Post extends Component {
     );
 
     if (!post) {
-      return <Redirect to="/notFound" />;
+      return <NotFound />;
     }
     return (
       <div>
@@ -42,6 +43,12 @@ class Post extends Component {
         <br />
         <i>{post.postDescription}</i>
         <p>{post.postBody}</p>
+        <CommentList
+          addComment={this.props.addComment}
+          deleteComment={this.props.deleteComment}
+          comments={post.comments}
+          postId={post.id}
+        />
       </div>
     );
   }

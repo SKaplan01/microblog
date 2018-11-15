@@ -8,7 +8,7 @@ class PostList extends Component {
   render() {
     let postCards = this.props.posts.map(post => {
       return (
-        <Card className="postCard">
+        <Card key={post.id} className="postCard">
           <CardBody>
             <Link to={`/${post.id}`}>
               {' '}

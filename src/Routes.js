@@ -3,7 +3,7 @@ import Home from './Home';
 import BlogForm from './BlogForm';
 import Post from './Post';
 import NotFound from './NotFound';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 class Routes extends Component {
   render() {
@@ -37,6 +37,8 @@ class Routes extends Component {
               {...props}
               deletePost={this.props.deletePost}
               posts={this.props.posts}
+              addComment={this.props.addComment}
+              deleteComment={this.props.deleteComment}
             />
           )}
         />
