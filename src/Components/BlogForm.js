@@ -3,15 +3,16 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class BlogForm extends Component {
   static defaultProps = {
-    post: { postTitle: '', postDescription: '', postBody: '' }
+    post: { postTitle: '', postDescription: '', postBody: '', id: '' }
   };
   constructor(props) {
     super(props);
-
+    console.log(this.props);
     this.state = {
       postTitle: this.props.post.postTitle,
       postDescription: this.props.post.postDescription,
-      postBody: this.props.post.postBody
+      postBody: this.props.post.postBody,
+      id: this.props.post.id
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,16 +26,12 @@ class BlogForm extends Component {
   //if isEdit is falsy then invoke function that add posts that is passed down from app
   handleSubmit(evt) {
     evt.preventDefault();
-    if (this.props.isEdit) {
-      let postToEdit = {
-        ...this.state,
-        id: this.props.location.state.postToEdit.id
-      };
-      this.props.editPost(postToEdit);
-    } else {
-      this.props.addPost(this.state);
-    }
-    this.props.history.push('/');
+    // if (this.props.isEdit) {
+    // let postToEdit = {
+    //   ...this.state,
+    //   id: this.props.location.state.postToEdit.id
+    // };
+    this.props.submit(this.state);
   }
 
   render() {

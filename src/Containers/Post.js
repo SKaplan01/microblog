@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CommentList from './CommentList';
-import NotFound from './NotFound';
+import CommentList from '../Components/CommentList';
+import NotFound from '../Components/NotFound';
 
 //Actual post => displays title, description and body
 //Can edit and remove post
