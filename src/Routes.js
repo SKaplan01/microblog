@@ -32,11 +32,12 @@ class Routes extends Component {
         />
         <Route
           path="/:postid"
-          render={props => (
+          render={routerProps => (
             <Post
-              {...props}
+              {...routerProps}
               deletePost={this.props.deletePost}
               posts={this.props.posts}
+              post={this.props.posts.find(...routerProps.match.params.postId)}
               addComment={this.props.addComment}
               deleteComment={this.props.deleteComment}
             />

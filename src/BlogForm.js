@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class BlogForm extends Component {
+  // static defaultProps = {post: {title: "", ...}}
   constructor(props) {
     super(props);
 
@@ -45,11 +46,11 @@ class BlogForm extends Component {
     }
 
     //reset state and redirect to home when form is submitted
-    this.setState({
-      postTitle: '',
-      postDescription: '',
-      postBody: ''
-    });
+    // this.setState({
+    //   postTitle: '',
+    //   postDescription: '',
+    //   postBody: ''
+    // });
     this.props.history.push('/');
   }
 
