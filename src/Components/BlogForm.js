@@ -21,8 +21,8 @@ class BlogForm extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
-  //if prop isEdit is true then invoke function that edit posts that is passed down from app
-  //if isEdit is falsy then invoke function that add posts that is passed down from app
+  //calls submit with updated form values from form's state
+  //submit will either call AddPost or editPost (depending on url) --> determined in FormContainer
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.submit(this.state);

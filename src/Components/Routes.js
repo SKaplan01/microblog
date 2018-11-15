@@ -10,11 +10,7 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => <Home posts={this.props.posts} />}
-        />
+        <Route exact path="/" render={() => <Home />} />
         <Route
           exact
           path="/new"
@@ -24,17 +20,7 @@ class Routes extends Component {
           path="/edit/:postid"
           render={props => <FormContainer {...props} isEdit={true} />}
         />
-        <Route
-          path="/:postid"
-          render={props => (
-            <Post
-              {...props}
-              deletePost={this.props.deletePost}
-              addComment={this.props.addComment}
-              deleteComment={this.props.deleteComment}
-            />
-          )}
-        />
+        <Route path="/:postid" render={props => <Post {...props} />} />
         <Route render={() => <NotFound />} />
       </Switch>
     );

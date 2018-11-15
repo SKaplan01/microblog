@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card, CardTitle, CardGroup, CardSubtitle, CardBody } from 'reactstrap';
-import { deletePost } from '../actionCreators';
 import './PostList.css';
 
 //Render a list of cards which contain post data, link to specific posts.

@@ -33,7 +33,7 @@ export function deletePost(postId) {
 
 export function addComment(comment, postId) {
   return {
-    type: DELETE_POST,
+    type: ADD_COMMENT,
     postId,
     comment
   };
@@ -41,7 +41,7 @@ export function addComment(comment, postId) {
 
 export function deleteComment(postId, commentId) {
   return {
-    type: DELETE_POST,
+    type: DELETE_COMMENT,
     postId,
     commentId
   };

@@ -14,6 +14,8 @@ class FormContainer extends Component {
     this.props.history.push('/');
   }
 
+  //if url is "/new", this.props.isEdit will be falsy and addPost is called
+  //if url is "/edit", this.props.isEdit will be true and editPost is called
   handleSubmit(post) {
     this.props.isEdit ? this.props.editPost(post) : this.props.addPost(post);
     this.props.history.push('/');
@@ -32,9 +34,11 @@ class FormContainer extends Component {
   }
 }
 
+//if url is "/edit", ownProps will url parameter with postId --> find that post by ID and pass form values
+//otherwise, passes undefined values for form
 function mapStateToProps(reduxState, ownProps) {
   let post;
-  if (this.props) {
+  if (ownProps) {
     post = reduxState.posts[ownProps.match.params.postid];
   }
   return {
