@@ -26,7 +26,7 @@ class App extends Component {
   //Remove post from state
   deletePost(id) {
     let newPosts = this.state.posts.filter(post => post.id !== id);
-    this.setState({ posts: newPosts });
+    this.setState(st => ({ posts: newPosts }));
   }
 
   //Update state with new, edited post

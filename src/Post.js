@@ -16,38 +16,35 @@ class Post extends Component {
     this.props.history.push('/');
   }
 
-  //Find post that matches id in url params
-  //If no post is found redirect to NotFound page
+  //If no post is passed down from routes redirect to NotFound page
   render() {
-    let post = this.props.posts.find(
-      post => post.id === this.props.match.params.postid
-    );
-
-    if (!post) {
+    if (!this.props.post) {
       return <NotFound />;
     }
     return (
       <div>
-        <h1>{post.postTitle}</h1>
+        <h1>{this.props.post.postTitle}</h1>
         <button
           //redirect to edit form
           onClick={() =>
-            this.props.history.push(`/edit/${post.id}`, {
-              postToEdit: post
+            this.props.history.push(`/edit/${this.props.post.id}`, {
+              postToEdit: this.props.post
             })
           }
         >
           Edit
         </button>
-        <button onClick={() => this.handleDelete(post.id)}>Delete</button>
+        <button onClick={() => this.handleDelete(this.props.post.id)}>
+          Delete
+        </button>
         <br />
-        <i>{post.postDescription}</i>
-        <p>{post.postBody}</p>
+        <i>{this.props.post.postDescription}</i>
+        <p>{this.props.post.postBody}</p>
         <CommentList
           addComment={this.props.addComment}
           deleteComment={this.props.deleteComment}
-          comments={post.comments}
-          postId={post.id}
+          comments={this.props.post.comments}
+          postId={this.props.post.id}
         />
       </div>
     );
