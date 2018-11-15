@@ -26,11 +26,6 @@ class BlogForm extends Component {
   //if isEdit is falsy then invoke function that add posts that is passed down from app
   handleSubmit(evt) {
     evt.preventDefault();
-    // if (this.props.isEdit) {
-    // let postToEdit = {
-    //   ...this.state,
-    //   id: this.props.location.state.postToEdit.id
-    // };
     this.props.submit(this.state);
   }
 

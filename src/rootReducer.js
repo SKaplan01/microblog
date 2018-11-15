@@ -6,16 +6,15 @@ import {
   DELETE_POST
 } from './actionTypes';
 
-function rootReducer(state = {}, action) {
+function rootReducer(state = { posts: {} }, action) {
   console.log('reducer ran; state & action:', state, action);
 
   switch (action.type) {
     case ADD_POST:
-      return { ...state, [action.post.id]: action.post };
+      return { posts: { ...state.posts, [action.post.id]: action.post } };
 
-    // case EDIT_POST:
-    //   return { ...state, count: state.count - 1 };
-    //   this.props.history.push('/');
+    case EDIT_POST:
+      return { posts: { ...state.posts, [action.post.id]: action.post } };
 
     case DELETE_POST:
       return { ...state, count: state.count - 1 };

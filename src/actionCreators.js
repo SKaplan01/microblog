@@ -17,10 +17,10 @@ export function addPost(post) {
   };
 }
 
-export function editPost(postId) {
+export function editPost(post) {
   return {
     type: EDIT_POST,
-    postId
+    post
   };
 }
 
