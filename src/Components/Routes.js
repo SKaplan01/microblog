@@ -30,9 +30,6 @@ class Routes extends Component {
             <Post
               {...props}
               deletePost={this.props.deletePost}
-              post={this.props.posts.find(
-                post => props.match.params.postid === post.id
-              )}
               addComment={this.props.addComment}
               deleteComment={this.props.deleteComment}
             />

@@ -32,10 +32,10 @@ class FormContainer extends Component {
   }
 }
 
-function mapStateToProps(reduxState) {
+function mapStateToProps(reduxState, ownProps) {
   let post;
   if (this.props) {
-    post = reduxState.posts[this.props.match.params.postid];
+    post = reduxState.posts[ownProps.match.params.postid];
   }
   return {
     post

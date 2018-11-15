@@ -7,7 +7,6 @@ class BlogForm extends Component {
   };
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {
       postTitle: this.props.post.postTitle,
       postDescription: this.props.post.postDescription,

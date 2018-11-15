@@ -17,7 +17,8 @@ function rootReducer(state = { posts: {} }, action) {
       return { posts: { ...state.posts, [action.post.id]: action.post } };
 
     case DELETE_POST:
-      return { ...state, count: state.count - 1 };
+      let { [action.postId]: deletedObj, ...newObjects } = state.posts;
+      return { posts: newObjects };
 
     case ADD_COMMENT:
       return { ...state, count: state.count - 1 };
