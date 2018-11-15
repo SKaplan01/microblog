@@ -2,26 +2,16 @@ import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class BlogForm extends Component {
-  // static defaultProps = {post: {title: "", ...}}
+  static defaultProps = {
+    post: { postTitle: '', postDescription: '', postBody: '' }
+  };
   constructor(props) {
     super(props);
 
-    //declare variables that will be added to state
-    //initially are empty strings, if form is an edit form then change these variables to the props passed in location.state
-    let postTitle = '';
-    let postDescription = '';
-    let postBody = '';
-
-    try {
-      postTitle = this.props.location.state.postToEdit.postTitle;
-      postDescription = this.props.location.state.postToEdit.postDescription;
-      postBody = this.props.location.state.postToEdit.postBody;
-    } catch (err) {}
-
     this.state = {
-      postTitle,
-      postDescription,
-      postBody
+      postTitle: this.props.post.postTitle,
+      postDescription: this.props.post.postDescription,
+      postBody: this.props.post.postBody
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,13 +34,6 @@ class BlogForm extends Component {
     } else {
       this.props.addPost(this.state);
     }
-
-    //reset state and redirect to home when form is submitted
-    // this.setState({
-    //   postTitle: '',
-    //   postDescription: '',
-    //   postBody: ''
-    // });
     this.props.history.push('/');
   }
 
@@ -94,7 +77,7 @@ class BlogForm extends Component {
         </FormGroup>
 
         <Button type="submit">Submit</Button>
-        <Button onClick={() => this.props.history.push('/')}>Cancel</Button>
+        <Button onClick={this.props.cancel}>Cancel</Button>
       </Form>
     );
   }

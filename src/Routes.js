@@ -17,7 +17,13 @@ class Routes extends Component {
         <Route
           exact
           path="/new"
-          render={props => <BlogForm {...props} addPost={this.props.addPost} />}
+          render={props => (
+            <BlogForm
+              {...props}
+              addPost={this.props.addPost}
+              cancel={() => props.history.push('/')}
+            />
+          )}
         />
         <Route
           path="/edit/:postid"
@@ -25,19 +31,23 @@ class Routes extends Component {
             <BlogForm
               {...props}
               editPost={this.props.editPost}
-              posts={this.props.posts}
+              post={this.props.posts.find(
+                post => props.match.params.postid === post.id
+              )}
               isEdit={true}
+              cancel={() => props.history.push('/')}
             />
           )}
         />
         <Route
           path="/:postid"
-          render={routerProps => (
+          render={props => (
             <Post
-              {...routerProps}
+              {...props}
               deletePost={this.props.deletePost}
-              posts={this.props.posts}
-              post={this.props.posts.find(...routerProps.match.params.postId)}
+              post={this.props.posts.find(
+                post => props.match.params.postid === post.id
+              )}
               addComment={this.props.addComment}
               deleteComment={this.props.deleteComment}
             />
