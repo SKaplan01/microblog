@@ -15,7 +15,7 @@ class CommentList extends Component {
     this.setState({ comment: evt.target.value });
   }
 
-  //calls addComment (a prop from App) to update comments for this post
+  //calls addComment (a prop from Post) to update comments for this post
   handleSubmit(evt) {
     evt.preventDefault();
     let comment = { text: this.state.comment, id: uuid() };
@@ -23,25 +23,24 @@ class CommentList extends Component {
     this.setState({ comment: '' });
   }
 
-  //calls deleteComment (prop from app) with id for this comment and id for this post
+  //calls deleteComment (prop from Post) with id for this comment and id for this post
   //evt.target.dataset.id comes from data-id attribute in button
   handleDelete(evt) {
     evt.preventDefault();
-    this.props.deleteComment(evt.target.dataset.id, this.props.postId);
+    this.props.deleteComment(this.props.postId, evt.target.dataset.id);
   }
 
   render() {
     let comments;
-
     //if post has comments, create li element for each comment
     if (this.props.comments) {
-      comments = this.props.comments.map(comment => {
+      comments = Object.keys(this.props.comments).map(key => {
         return (
-          <li key={comment.id}>
-            <button data-id={comment.id} onClick={this.handleDelete}>
+          <li key={key}>
+            <button data-id={key} onClick={this.handleDelete}>
               X
             </button>
-            {comment.text}
+            {this.props.comments[key]}
           </li>
         );
       });
