@@ -3,15 +3,16 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class BlogForm extends Component {
   static defaultProps = {
-    post: { postTitle: '', postDescription: '', postBody: '', id: '' }
+    title: '',
+    description: '',
+    body: ''
   };
   constructor(props) {
     super(props);
     this.state = {
-      postTitle: this.props.post.postTitle,
-      postDescription: this.props.post.postDescription,
-      postBody: this.props.post.postBody,
-      id: this.props.post.id
+      title: this.props.title,
+      description: this.props.description,
+      body: this.props.body
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,37 +34,37 @@ class BlogForm extends Component {
       <Form onSubmit={this.handleSubmit}>
         <h3>New Post</h3>
         <FormGroup>
-          <Label for="postTitle">Title</Label>
+          <Label for="title">Title</Label>
           <Input
             onChange={this.handleChange}
-            type="postTitle"
-            name="postTitle"
-            id="postTitle"
+            type="title"
+            name="title"
+            id="title"
             placeholder=""
-            value={this.state.postTitle}
+            value={this.state.title}
           />
         </FormGroup>
         <FormGroup>
-          <Label for="postDescription">Description</Label>
+          <Label for="description">Description</Label>
           <Input
             onChange={this.handleChange}
-            type="postDescription"
-            name="postDescription"
-            id="postDescription"
+            type="description"
+            name="description"
+            id="description"
             placeholder=""
-            value={this.state.postDescription}
+            value={this.state.description}
           />
         </FormGroup>
 
         <FormGroup>
-          <Label for="postBody">Body</Label>
+          <Label for="body">Body</Label>
           <Input
             onChange={this.handleChange}
-            type="postBody"
-            name="postBody"
-            id="postBody"
+            type="body"
+            name="body"
+            id="body"
             placeholder=""
-            value={this.state.postBody}
+            value={this.state.body}
           />
         </FormGroup>
 

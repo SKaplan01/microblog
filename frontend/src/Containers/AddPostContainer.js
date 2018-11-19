@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BlogForm from '../Components/BlogForm';
 import { connect } from 'react-redux';
-import { addPost } from '../actionCreators';
+import { addPostToApi } from '../actionCreators';
 
 class AddPostContainer extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class AddPostContainer extends Component {
 
   //handleSubmit will call dispatch function addPost and redirect to homepage
   handleSubmit(post) {
-    this.props.addPost(post);
+    this.props.addPostToApi(post);
     this.props.history.push('/');
   }
 
@@ -31,7 +31,7 @@ class AddPostContainer extends Component {
 
 const connectToReduxStore = connect(
   null,
-  { addPost }
+  { addPostToApi }
 );
 
 export default connectToReduxStore(AddPostContainer);
