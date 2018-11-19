@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PostList from './PostList';
+import PostList from '../Containers/PostList';
 
 //Home shows header and renders list of posts
 class Home extends Component {
@@ -10,7 +10,7 @@ class Home extends Component {
           Welcome to Microblog, our innovative site for communicating on the
           information superhighway.
         </h4>
-        <PostList posts={this.props.posts} />
+        <PostList />
       </div>
     );
   }
