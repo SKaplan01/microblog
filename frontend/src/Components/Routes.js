@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Home from './Home';
-import BlogForm from './BlogForm';
 import Post from '../Containers/Post';
 import NotFound from './NotFound';
-import FormContainer from '../Containers/FormContainer';
+import AddPostContainer from '../Containers/AddPostContainer';
+import EditPostContainer from '../Containers/EditPostContainer';
 import { Switch, Route } from 'react-router-dom';
 
 class Routes extends Component {
@@ -14,11 +14,11 @@ class Routes extends Component {
         <Route
           exact
           path="/new"
-          render={props => <FormContainer {...props} />}
+          render={props => <AddPostContainer {...props} />}
         />
         <Route
           path="/edit/:postid"
-          render={props => <FormContainer {...props} isEdit={true} />}
+          render={props => <EditPostContainer {...props} isEdit={true} />}
         />
         <Route path="/:postid" render={props => <Post {...props} />} />
         <Route render={() => <NotFound />} />

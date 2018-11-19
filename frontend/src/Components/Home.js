@@ -10,7 +10,7 @@ class Home extends Component {
           Welcome to Microblog, our innovative site for communicating on the
           information superhighway.
         </h4>
-        <PostList posts={this.props.posts} />
+        <PostList />
       </div>
     );
   }
