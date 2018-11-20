@@ -180,7 +180,7 @@ export function addCommentApi(comment, postId) {
         comment
       );
       await dispatch(addedComment(resp.data, postId));
-      await dispatch(getCommentsFromApi(postId));
+      // await dispatch(getCommentsFromApi(postId));
     } catch (err) {
       console.log(err);
     }
@@ -204,7 +204,7 @@ export function deleteCommentApi(postId, commentId) {
         `${BASE_URL}api/posts/${postId}/comments/${commentId}`
       );
       await dispatch(deletedComment(postId, commentId));
-      await dispatch(getCommentsFromApi(postId));
+      // await dispatch(getCommentsFromApi(postId));
     } catch (err) {
       console.log(err);
     }
