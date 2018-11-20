@@ -100,7 +100,7 @@ export function addPostToApi(post) {
     try {
       let resp = await axios.post(`${BASE_URL}api/posts`, post);
       await dispatch(addedPostToApi(resp.data));
-      await dispatch(getTitlesFromApi());
+      // await dispatch(getTitlesFromApi());
     } catch (err) {
       console.log(err);
     }
