@@ -1,6 +1,7 @@
 import {
   ADD_COMMENT,
   DELETE_COMMENT,
+  LOAD_COMMENTS,
   ADD_POST,
   EDIT_POST,
   DELETE_POST,
@@ -25,6 +26,22 @@ function postsReducer(state = {}, action) {
       let { [action.postId]: deletedPost, ...posts } = state;
       return state;
 
+    //Loads comments from API and add to redux state
+    case LOAD_COMMENTS:
+      return {
+        //destructures all posts from redux state
+        ...state,
+        //overwrites post that is being commented on
+        [action.postId]: {
+          //destructures all other keys for this post besides comments
+          ...state[action.postId],
+          comments: [
+            //destructures all comments for this post from redux state
+            ...state[action.postId].comments
+          ]
+        }
+      };
+
     case ADD_COMMENT:
       return {
         //destructures all posts from redux state
@@ -33,32 +50,34 @@ function postsReducer(state = {}, action) {
         [action.postId]: {
           //destructures all other keys for this post besides comments
           ...state[action.postId],
-          comments: {
+          comments: [
             //destructures all comments for this post from redux state
             ...state[action.postId].comments,
             //adds new comment
-            [action.comment.id]: action.comment.text
-          }
+            action.comment
+          ]
         }
       };
 
     case DELETE_COMMENT:
       //destructures comment to delete and stores in "deletedComment"
       //destructures all other comments as "comments"
-      let { [action.commentId]: deletedComment, ...comments } = state[
-        action.postId
-      ].comments;
+
+      let newComments = state[action.postId].comments.filter(comment => {
+        return +comment.id !== +action.commentId;
+      });
       return {
         //destructures all posts from redux state
         ...state,
         //overwrites post that is having comment deleted from it's commentList
         [action.postId]: {
           ...state[action.postId],
-          //passed the "comments" from line 51
-          comments
+
+          comments: newComments
         }
       };
 
+    //Load post from backend API and add to redux state
     case LOAD_POST:
       return { ...state.posts, [action.post.id]: action.post };
 

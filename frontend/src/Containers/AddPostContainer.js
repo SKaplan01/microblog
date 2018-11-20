@@ -14,7 +14,7 @@ class AddPostContainer extends Component {
     this.props.history.push('/');
   }
 
-  //handleSubmit will call dispatch function addPost and redirect to homepage
+  //handleSubmit will call dispatch function addPostToApi and redirect to homepage
   handleSubmit(post) {
     this.props.addPostToApi(post);
     this.props.history.push('/');

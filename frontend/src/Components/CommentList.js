@@ -18,7 +18,7 @@ class CommentList extends Component {
   //calls addComment (a prop from Post) to update comments for this post
   handleSubmit(evt) {
     evt.preventDefault();
-    let comment = { text: this.state.comment, id: uuid() };
+    let comment = { text: this.state.comment };
     this.props.addComment(comment, this.props.postId);
     this.setState({ comment: '' });
   }
@@ -33,14 +33,15 @@ class CommentList extends Component {
   render() {
     let comments;
     //if post has comments, create li element for each comment
-    if (this.props.comments) {
-      comments = Object.keys(this.props.comments).map(key => {
+    console.log('comment:', this.props);
+    if (this.props.comments.length > 0) {
+      comments = this.props.comments.map(comment => {
         return (
-          <li key={key}>
-            <button data-id={key} onClick={this.handleDelete}>
+          <li key={comment.id}>
+            <button data-id={comment.id} onClick={this.handleDelete}>
               X
             </button>
-            {this.props.comments[key]}
+            {comment.text}
           </li>
         );
       });

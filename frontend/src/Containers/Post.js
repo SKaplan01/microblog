@@ -3,9 +3,9 @@ import CommentList from '../Components/CommentList';
 import NotFound from '../Components/NotFound';
 import { connect } from 'react-redux';
 import {
-  deletePost,
-  addComment,
-  deleteComment,
+  deletePostFromApi,
+  addCommentApi,
+  deleteCommentApi,
   getOnePostFromApi
 } from '../actionCreators';
 
@@ -17,13 +17,14 @@ class Post extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  //Whem component mounts dispatch function to get data for that specific post
   componentDidMount() {
     this.props.getOnePostFromApi(this.props.match.params.postid);
   }
 
   //Takes id as parameter, calls function passed from Redux => redirect to homepage
   handleDelete() {
-    this.props.deletePost(this.props.post.id);
+    this.props.deletePostFromApi(this.props.post.id);
     this.props.history.push('/');
   }
 
@@ -45,12 +46,12 @@ class Post extends Component {
         <br />
         <i>{this.props.post.description}</i>
         <p>{this.props.post.body}</p>
-        {/* <CommentList
-          addComment={this.props.addComment}
-          deleteComment={this.props.deleteComment}
+        <CommentList
+          addComment={this.props.addCommentApi}
+          deleteComment={this.props.deleteCommentApi}
           comments={this.props.post.comments}
           postId={this.props.post.id}
-        /> */}
+        />
       </div>
     );
   }
@@ -65,7 +66,7 @@ function mapStateToProps(reduxState, ownProps) {
 
 const connectToReduxStore = connect(
   mapStateToProps,
-  { deletePost, addComment, deleteComment, getOnePostFromApi }
+  { deletePostFromApi, addCommentApi, deleteCommentApi, getOnePostFromApi }
 );
 
 export default connectToReduxStore(Post);

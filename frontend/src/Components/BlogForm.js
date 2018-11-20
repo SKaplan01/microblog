@@ -3,16 +3,19 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class BlogForm extends Component {
   static defaultProps = {
-    title: '',
-    description: '',
-    body: ''
+    post: {
+      title: '',
+      description: '',
+      body: ''
+    }
   };
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.state = {
-      title: this.props.title,
-      description: this.props.description,
-      body: this.props.body
+      title: this.props.post.title,
+      description: this.props.post.description,
+      body: this.props.post.body
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,10 +26,10 @@ class BlogForm extends Component {
   }
 
   //calls submit with updated form values from form's state
-  //submit will either call AddPost or editPost (depending on url) --> determined in FormContainer
+  //submit will either call AddPostToApi or editPostApi (depending on url)
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.submit(this.state);
+    this.props.submit(this.state, this.props.post.id);
   }
 
   render() {

@@ -10,16 +10,10 @@ class PostList extends Component {
   //loads title, description and votes from API
   //(component will then get new props from mapStateToProps)
   componentDidMount() {
-    console.log('COMPONENT DID MOUNT in PostList');
     this.props.getTitlesFromApi();
   }
 
-  // componentDidUpdate() {
-  //   this.props.getTitlesFromApi();
-  // }
-
   render() {
-    console.log('RENDER RAN in POSTLIST');
     let postCards;
     if (this.props.posts) {
       let { posts } = this.props;
