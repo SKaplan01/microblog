@@ -31,6 +31,10 @@ class CommentList extends Component {
   }
 
   render() {
+    const style = {
+      margin: '25px',
+      fontFamily: 'archivo'
+    };
     let comments;
     //if post has comments, create li element for each comment
     if (this.props.comments) {
@@ -47,10 +51,9 @@ class CommentList extends Component {
     }
 
     return (
-      <div>
+      <div style={style}>
         <ul>{comments ? comments : ''}</ul>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="comment" />
           <input
             onChange={this.handleChange}
             type="text"

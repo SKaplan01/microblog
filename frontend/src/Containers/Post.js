@@ -3,6 +3,7 @@ import CommentList from '../Components/CommentList';
 import NotFound from '../Components/NotFound';
 import { connect } from 'react-redux';
 import { deletePost, addComment, deleteComment } from '../actionCreators';
+import { Button } from 'reactstrap';
 
 //Actual post => displays title, description and body
 //Can edit and remove post
@@ -20,19 +21,40 @@ class Post extends Component {
 
   //If post with this id doesn't exist, redirect to NotFound page
   render() {
+    const style = {
+      margin: '25px',
+      fontFamily: 'archivo',
+      padding: '10px'
+    };
+
+    const buttonStyle = {
+      margin: '2px',
+      padding: '5px',
+      width: '75px'
+    };
     if (!this.props.post) {
       return <NotFound />;
     }
     return (
-      <div>
+      <div style={style}>
         <h1>{this.props.post.postTitle}</h1>
-        <button
+        <Button
+          style={buttonStyle}
+          outline
+          color="primary"
           //redirect to edit form
           onClick={() => this.props.history.push(`/edit/${this.props.post.id}`)}
         >
           Edit
-        </button>
-        <button onClick={this.handleDelete}>Delete</button>
+        </Button>
+        <Button
+          style={buttonStyle}
+          outline
+          color="danger"
+          onClick={this.handleDelete}
+        >
+          Delete
+        </Button>
         <br />
         <i>{this.props.post.postDescription}</i>
         <p>{this.props.post.postBody}</p>

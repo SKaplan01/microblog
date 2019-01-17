@@ -29,14 +29,24 @@ class BlogForm extends Component {
   }
 
   render() {
+    const buttonStyle = {
+      margin: '3px',
+      padding: '7px',
+      width: '100px'
+    };
+
+    const formStyle = {
+      margin: '25px',
+      fontFamily: 'archivo'
+    };
+
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <h3>New Post</h3>
+      <Form style={formStyle} onSubmit={this.handleSubmit}>
+        <h3>Blog away!</h3>
         <FormGroup>
           <Label for="postTitle">Title</Label>
           <Input
             onChange={this.handleChange}
-            type="postTitle"
             name="postTitle"
             id="postTitle"
             placeholder=""
@@ -47,7 +57,6 @@ class BlogForm extends Component {
           <Label for="postDescription">Description</Label>
           <Input
             onChange={this.handleChange}
-            type="postDescription"
             name="postDescription"
             id="postDescription"
             placeholder=""
@@ -58,8 +67,8 @@ class BlogForm extends Component {
         <FormGroup>
           <Label for="postBody">Body</Label>
           <Input
+            type="textarea"
             onChange={this.handleChange}
-            type="postBody"
             name="postBody"
             id="postBody"
             placeholder=""
@@ -67,8 +76,17 @@ class BlogForm extends Component {
           />
         </FormGroup>
 
-        <Button type="submit">Submit</Button>
-        <Button onClick={this.props.cancel}>Cancel</Button>
+        <Button style={buttonStyle} outline color="success" type="submit">
+          Submit
+        </Button>
+        <Button
+          style={buttonStyle}
+          outline
+          color="danger"
+          onClick={this.props.cancel}
+        >
+          Cancel
+        </Button>
       </Form>
     );
   }
