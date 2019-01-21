@@ -4,6 +4,8 @@
 
 MicroBlog is a blogging site where users can create blogs and comment on posts. The website is a single page application built with React and Redux.
 
+To see a live demo: https://react-microblog.netlify.com/
+
 ## Getting Started
 
 From the cloned repo folder install node modules:
