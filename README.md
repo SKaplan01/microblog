@@ -1,6 +1,6 @@
 # MicroBlog
 
-![Alt text](https://github.com/hasierpastor/microblog/blob/master/assets/homepage.png)
+![Alt text](https://github.com/hasierpastor/microblog/blob/master/assets/markdown.png)
 
 MicroBlog is a blogging site where users can create blogs and comment on posts. The website is a single page application built with React and Redux.
 
