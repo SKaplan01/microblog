@@ -7,6 +7,11 @@ import './PostList.css';
 //Render a list of cards which contain post data, link to specific posts.
 class PostList extends Component {
   render() {
+    const style = {
+      marginLeft: '-25px',
+      marginTop: '10px'
+    };
+
     let postCards;
     if (this.props.posts) {
       let { posts } = this.props;
@@ -25,7 +30,11 @@ class PostList extends Component {
       });
     }
 
-    return <CardGroup className="cardGroup">{postCards}</CardGroup>;
+    return (
+      <CardGroup style={style} className="cardGroup">
+        {postCards}
+      </CardGroup>
+    );
   }
 }
 
