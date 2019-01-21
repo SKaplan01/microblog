@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import uuid from 'uuid/v4';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 //Displays a list of comments associated with the parent Post
 class CommentList extends Component {
@@ -35,15 +38,49 @@ class CommentList extends Component {
       margin: '25px',
       fontFamily: 'archivo'
     };
+
+    const formStyle = {
+      height: '50px',
+      margin: '-25px'
+    };
+
+    const addCommentStyle = {
+      margin: '5px',
+      padding: '5px',
+      height: '30px',
+      width: '60px'
+    };
+
+    const listStyle = {
+      margin: '-25px',
+      padding: '10px',
+      listStyleType: 'none'
+    };
+
+    const commentStyle = {
+      marginTop: '10px',
+      marginBottom: '10px',
+      marginLeft: '-25px'
+    };
+
+    const deleteCommentStyle = {
+      height: '20px',
+      width: '50px',
+      display: 'inline-block'
+    };
+
     let comments;
     //if post has comments, create li element for each comment
     if (this.props.comments) {
       comments = Object.keys(this.props.comments).map(key => {
         return (
-          <li key={key}>
-            <button data-id={key} onClick={this.handleDelete}>
-              X
-            </button>
+          <li style={commentStyle} key={key}>
+            <FontAwesomeIcon
+              style={deleteCommentStyle}
+              data-id={key}
+              onClick={this.handleDelete}
+              icon={faTrashAlt}
+            />
             {this.props.comments[key]}
           </li>
         );
@@ -52,8 +89,8 @@ class CommentList extends Component {
 
     return (
       <div style={style}>
-        <ul>{comments ? comments : ''}</ul>
-        <form onSubmit={this.handleSubmit}>
+        <ul style={listStyle}>{comments ? comments : ''}</ul>
+        <Form style={formStyle} onSubmit={this.handleSubmit}>
           <input
             onChange={this.handleChange}
             type="text"
@@ -61,8 +98,10 @@ class CommentList extends Component {
             value={this.state.comment}
             placeholder="New comment"
           />
-          <button>Add</button>
-        </form>
+          <Button style={addCommentStyle} outline color="success">
+            <FontAwesomeIcon icon={faCheck} />
+          </Button>
+        </Form>
       </div>
     );
   }

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import Routes from './Routes';
 import Header from './Header';
 import uuid from 'uuid/v4';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faCheck, faBlog } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faTrashAlt, faCheck);
 
 //App renders routes and header components
 class App extends Component {

@@ -24,7 +24,16 @@ class Post extends Component {
     const style = {
       margin: '25px',
       fontFamily: 'archivo',
-      padding: '10px'
+      padding: '10px',
+      display: 'flex',
+      justifyContent: 'space-around',
+      flexDirection: 'column'
+    };
+
+    const buttonDiv = {
+      display: 'flex',
+      flex: '1',
+      flexDirection: 'row'
     };
 
     const buttonStyle = {
@@ -32,31 +41,38 @@ class Post extends Component {
       padding: '5px',
       width: '75px'
     };
+
     if (!this.props.post) {
       return <NotFound />;
     }
     return (
       <div style={style}>
         <h1>{this.props.post.postTitle}</h1>
-        <Button
-          style={buttonStyle}
-          outline
-          color="primary"
-          //redirect to edit form
-          onClick={() => this.props.history.push(`/edit/${this.props.post.id}`)}
-        >
-          Edit
-        </Button>
-        <Button
-          style={buttonStyle}
-          outline
-          color="danger"
-          onClick={this.handleDelete}
-        >
-          Delete
-        </Button>
+        <div style={buttonDiv}>
+          <Button
+            style={buttonStyle}
+            outline
+            color="primary"
+            //redirect to edit form
+            onClick={() =>
+              this.props.history.push(`/edit/${this.props.post.id}`)
+            }
+          >
+            Edit
+          </Button>
+          <Button
+            style={buttonStyle}
+            outline
+            color="danger"
+            onClick={this.handleDelete}
+          >
+            Delete
+          </Button>
+        </div>
         <br />
-        <i>{this.props.post.postDescription}</i>
+        <h4>
+          <i>{this.props.post.postDescription}</i>
+        </h4>
         <p>{this.props.post.postBody}</p>
         <CommentList
           addComment={this.props.addComment}
