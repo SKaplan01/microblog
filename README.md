@@ -16,9 +16,9 @@ Start the application:
 
 ## Built With:
 
-[React](https://reactjs.org/)
-[Redux](https://redux.js.org/)
+1. [React](https://reactjs.org/)
+2. [Redux](https://redux.js.org/)
 
-##Collaborators:
+## Collaborators:
 
 https://github.com/SKaplan01/jobly
