@@ -72,16 +72,16 @@ class CommentList extends Component {
     let comments;
     //if post has comments, create li element for each comment
     if (this.props.comments) {
-      comments = Object.keys(this.props.comments).map(key => {
+      comments = this.props.comments.map(comment => {
         return (
-          <li style={commentStyle} key={key}>
+          <li style={commentStyle} key={comment.id}>
             <FontAwesomeIcon
               style={deleteCommentStyle}
-              data-id={key}
+              data-id={comment.id}
               onClick={this.handleDelete}
               icon={faTrashAlt}
             />
-            {this.props.comments[key]}
+            {comment.text}
           </li>
         );
       });

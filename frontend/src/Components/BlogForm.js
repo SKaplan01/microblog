@@ -8,10 +8,9 @@ class BlogForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      postTitle: this.props.post.postTitle,
-      postDescription: this.props.post.postDescription,
-      postBody: this.props.post.postBody,
-      id: this.props.post.id
+      title: this.props.post.title,
+      description: this.props.post.description,
+      body: this.props.post.body
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,7 +24,7 @@ class BlogForm extends Component {
   //submit will either call AddPost or editPost (depending on url) --> determined in FormContainer
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.submit(this.state);
+    this.props.submit(this.state, this.props.post.id);
   }
 
   render() {
@@ -47,20 +46,20 @@ class BlogForm extends Component {
           <Label for="postTitle">Title</Label>
           <Input
             onChange={this.handleChange}
-            name="postTitle"
-            id="postTitle"
+            name="title"
+            id="title"
             placeholder=""
-            value={this.state.postTitle}
+            value={this.state.title}
           />
         </FormGroup>
         <FormGroup>
           <Label for="postDescription">Description</Label>
           <Input
             onChange={this.handleChange}
-            name="postDescription"
-            id="postDescription"
+            name="description"
+            id="description"
             placeholder=""
-            value={this.state.postDescription}
+            value={this.state.description}
           />
         </FormGroup>
 
@@ -69,10 +68,10 @@ class BlogForm extends Component {
           <Input
             type="textarea"
             onChange={this.handleChange}
-            name="postBody"
-            id="postBody"
+            name="body"
+            id="body"
             placeholder=""
-            value={this.state.postBody}
+            value={this.state.body}
           />
         </FormGroup>
 

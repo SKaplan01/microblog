@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import CommentList from '../Components/CommentList';
 import NotFound from '../Components/NotFound';
 import { connect } from 'react-redux';
-import { deletePost, addComment, deleteComment } from '../actionCreators';
+import {
+  deletePostFromApi,
+  addCommentApi,
+  deleteCommentApi,
+  getOnePostFromApi
+} from '../actionCreators';
 import { Button } from 'reactstrap';
 
 //Actual post => displays title, description and body
@@ -13,9 +18,14 @@ class Post extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  //Whemncomponent mounts dispatch function to get data for that specific post
+  componentDidMount() {
+    this.props.getOnePostFromApi(this.props.match.params.postid);
+  }
+
   //Takes id as parameter, calls function passed from Redux => redirect to homepage
   handleDelete() {
-    this.props.deletePost(this.props.post.id);
+    this.props.deletePostFromApi(this.props.post.id);
     this.props.history.push('/');
   }
 
@@ -47,7 +57,7 @@ class Post extends Component {
     }
     return (
       <div style={style}>
-        <h1>{this.props.post.postTitle}</h1>
+        <h1>{this.props.post.title}</h1>
         <div style={buttonDiv}>
           <Button
             style={buttonStyle}
@@ -71,12 +81,12 @@ class Post extends Component {
         </div>
         <br />
         <h4>
-          <i>{this.props.post.postDescription}</i>
+          <i>{this.props.post.description}</i>
         </h4>
-        <p>{this.props.post.postBody}</p>
+        <p>{this.props.post.body}</p>
         <CommentList
-          addComment={this.props.addComment}
-          deleteComment={this.props.deleteComment}
+          addComment={this.props.addCommentApi}
+          deleteComment={this.props.deleteCommentApi}
           comments={this.props.post.comments}
           postId={this.props.post.id}
         />
@@ -94,7 +104,7 @@ function mapStateToProps(reduxState, ownProps) {
 
 const connectToReduxStore = connect(
   mapStateToProps,
-  { deletePost, addComment, deleteComment }
+  { deletePostFromApi, addCommentApi, deleteCommentApi, getOnePostFromApi }
 );
 
 export default connectToReduxStore(Post);

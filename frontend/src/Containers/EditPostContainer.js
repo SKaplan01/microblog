@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BlogForm from '../Components/BlogForm';
 import { connect } from 'react-redux';
-import { editPost } from '../actionCreators';
+import { editPostApi } from '../actionCreators';
 
 class EditPostContainer extends Component {
   constructor(props) {
@@ -16,8 +16,8 @@ class EditPostContainer extends Component {
 
   //if url is "/new", this.props.isEdit will be falsy and addPost is called
   //if url is "/edit", this.props.isEdit will be true and editPost is called
-  handleSubmit(post) {
-    this.props.editPost(post);
+  handleSubmit(post, postId) {
+    this.props.editPostApi(post, postId);
     this.props.history.push('/');
   }
 
@@ -44,7 +44,7 @@ function mapStateToProps(reduxState, ownProps) {
 
 const connectToReduxStore = connect(
   mapStateToProps,
-  { editPost }
+  { editPostApi }
 );
 
 export default connectToReduxStore(EditPostContainer);
