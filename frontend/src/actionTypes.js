@@ -6,3 +6,4 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const LOAD_COMMENTS = 'LOAD_COMMENTS';
 export const LOAD_TITLES = 'LOAD_TITLES';
 export const LOAD_POST = 'LOAD_POST';
+export const ADD_VOTE = 'ADD_VOTE';

@@ -4,9 +4,15 @@ import Header from './Header';
 import uuid from 'uuid/v4';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faCheck, faBlog } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTrashAlt,
+  faCheck,
+  faBlog,
+  faThumbsUp,
+  faThumbsDown
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTrashAlt, faCheck);
+library.add(faTrashAlt, faCheck, faThumbsUp, faThumbsDown);
 
 //App renders routes and header components
 class App extends Component {

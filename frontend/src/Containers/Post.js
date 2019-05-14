@@ -6,8 +6,11 @@ import {
   deletePostFromApi,
   addCommentApi,
   deleteCommentApi,
-  getOnePostFromApi
+  getOnePostFromApi,
+  addVote
 } from '../actionCreators';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'reactstrap';
 
 //Actual post => displays title, description and body
@@ -16,9 +19,10 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
+    this.vote = this.vote.bind(this);
   }
 
-  //Whemncomponent mounts dispatch function to get data for that specific post
+  //When component mounts dispatch function to get data for that specific post
   componentDidMount() {
     this.props.getOnePostFromApi(this.props.match.params.postid);
   }
@@ -27,6 +31,10 @@ class Post extends Component {
   handleDelete() {
     this.props.deletePostFromApi(this.props.post.id);
     this.props.history.push('/');
+  }
+
+  vote(id, direction) {
+    this.props.addVote(id, direction);
   }
 
   //If post with this id doesn't exist, redirect to NotFound page
@@ -84,6 +92,16 @@ class Post extends Component {
           <i>{this.props.post.description}</i>
         </h4>
         <p>{this.props.post.body}</p>
+        <br />
+        <b>Votes: {this.props.post.votes}</b>
+        <FontAwesomeIcon
+          onClick={() => this.vote(this.props.post.id, 'up')}
+          icon={faThumbsUp}
+        />
+        <FontAwesomeIcon
+          onClick={() => this.vote(this.props.post.id, 'down')}
+          icon={faThumbsDown}
+        />
         <CommentList
           addComment={this.props.addCommentApi}
           deleteComment={this.props.deleteCommentApi}
@@ -104,7 +122,13 @@ function mapStateToProps(reduxState, ownProps) {
 
 const connectToReduxStore = connect(
   mapStateToProps,
-  { deletePostFromApi, addCommentApi, deleteCommentApi, getOnePostFromApi }
+  {
+    deletePostFromApi,
+    addCommentApi,
+    deleteCommentApi,
+    getOnePostFromApi,
+    addVote
+  }
 );
 
 export default connectToReduxStore(Post);

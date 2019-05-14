@@ -9,7 +9,8 @@ import {
   EDIT_POST,
   DELETE_POST,
   LOAD_TITLES,
-  LOAD_POST
+  LOAD_POST,
+  ADD_VOTE
 } from './actionTypes';
 
 const BASE_URL = 'http://localhost:5000/';
@@ -208,5 +209,28 @@ export function deleteCommentApi(postId, commentId) {
     } catch (err) {
       console.log(err);
     }
+  };
+}
+
+//Action creator for adding a vote
+export function addVote(postId, direction) {
+  return async function(dispatch) {
+    try {
+      let res = await axios.post(
+        `${BASE_URL}api/posts/${postId}/vote/${direction}`
+      );
+      dispatch(addedVote(postId, res.data.votes));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+
+//Action creator for added a vote
+function addedVote(postId, votes) {
+  return {
+    type: ADD_VOTE,
+    postId,
+    votes
   };
 }

@@ -5,7 +5,8 @@ import {
   ADD_POST,
   EDIT_POST,
   DELETE_POST,
-  LOAD_POST
+  LOAD_POST,
+  ADD_VOTE
 } from '../actionTypes';
 
 function postsReducer(state = {}, action) {
@@ -80,6 +81,12 @@ function postsReducer(state = {}, action) {
     //Load post from backend API and add to redux state
     case LOAD_POST:
       return { ...state.posts, [action.post.id]: action.post };
+
+    case ADD_VOTE:
+      return {
+        ...state,
+        [action.postId]: { ...state[action.postId], votes: action.votes }
+      };
 
     default:
       return state;
