@@ -49,7 +49,8 @@ class PostList extends Component {
       minWidth: '250px',
       maxHeight: '400px',
       margin: '10px',
-      border: '1px solid'
+      border: '1px solid',
+      borderColor: '#7FDBFF'
     };
 
     const cardBody = {

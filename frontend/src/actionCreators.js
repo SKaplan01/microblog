@@ -1,4 +1,3 @@
-import uuid from 'uuid/v4';
 import axios from 'axios';
 
 import {
@@ -7,7 +6,6 @@ import {
   LOAD_COMMENTS,
   ADD_POST,
   EDIT_POST,
-  DELETE_POST,
   LOAD_TITLES,
   LOAD_POST,
   ADD_VOTE
@@ -128,9 +126,9 @@ export function editPostApi(post, postId) {
   };
 }
 
-function deletedPostFromStore(postId) {
-  return { type: DELETE_POST, postId };
-}
+// function deletedPostFromStore(postId) {
+//   return { type: DELETE_POST, postId };
+// }
 
 //Redux thunk function that deletes post from API - - gets posts from API once post has been deleted
 //Updates redux state with titles

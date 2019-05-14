@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Jumbotron } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBlog } from '@fortawesome/free-solid-svg-icons';
 
 //Header appears on all pages - contains link to homepage and a link to add a new post
 class Header extends Component {
