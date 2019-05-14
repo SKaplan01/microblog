@@ -60,12 +60,36 @@ class Post extends Component {
       width: '75px'
     };
 
+    const voteStyle = {
+      margin: '2px'
+    };
+
+    const upVoteStyle = {
+      margin: '5px',
+      color: 'green',
+      cursor: 'pointer'
+    };
+
+    const downVoteStyle = {
+      margin: '5px',
+      color: 'red',
+      cursor: 'pointer'
+    };
+
+    const voteDiv = {
+      margin: '5px'
+    };
     if (!this.props.post) {
       return <NotFound />;
     }
     return (
       <div style={style}>
         <h1>{this.props.post.title}</h1>
+        <br />
+        <h4>
+          <i>{this.props.post.description}</i>
+        </h4>
+        <p>{this.props.post.body}</p>
         <div style={buttonDiv}>
           <Button
             style={buttonStyle}
@@ -87,21 +111,19 @@ class Post extends Component {
             Delete
           </Button>
         </div>
-        <br />
-        <h4>
-          <i>{this.props.post.description}</i>
-        </h4>
-        <p>{this.props.post.body}</p>
-        <br />
-        <b>Votes: {this.props.post.votes}</b>
-        <FontAwesomeIcon
-          onClick={() => this.vote(this.props.post.id, 'up')}
-          icon={faThumbsUp}
-        />
-        <FontAwesomeIcon
-          onClick={() => this.vote(this.props.post.id, 'down')}
-          icon={faThumbsDown}
-        />
+        <p style={voteStyle}>Votes: {this.props.post.votes}</p>
+        <div style={voteDiv}>
+          <FontAwesomeIcon
+            style={upVoteStyle}
+            onClick={() => this.vote(this.props.post.id, 'up')}
+            icon={faThumbsUp}
+          />
+          <FontAwesomeIcon
+            style={downVoteStyle}
+            onClick={() => this.vote(this.props.post.id, 'down')}
+            icon={faThumbsDown}
+          />
+        </div>
         <CommentList
           addComment={this.props.addCommentApi}
           deleteComment={this.props.deleteCommentApi}

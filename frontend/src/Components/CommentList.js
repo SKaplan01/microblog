@@ -45,10 +45,10 @@ class CommentList extends Component {
     };
 
     const addCommentStyle = {
-      margin: '5px',
-      padding: '5px',
+      margin: '0px',
+      padding: '-4px',
       height: '30px',
-      width: '60px'
+      width: '50px'
     };
 
     const listStyle = {
@@ -58,15 +58,17 @@ class CommentList extends Component {
     };
 
     const commentStyle = {
-      marginTop: '10px',
-      marginBottom: '10px',
+      marginTop: '5px',
+      marginBottom: '5px',
       marginLeft: '-25px'
     };
 
     const deleteCommentStyle = {
       height: '20px',
       width: '50px',
-      display: 'inline-block'
+      display: 'inline',
+      margin: '-2px',
+      cursor: 'pointer'
     };
 
     let comments;
@@ -74,15 +76,17 @@ class CommentList extends Component {
     if (this.props.comments) {
       comments = this.props.comments.map(comment => {
         return (
-          <li style={commentStyle} key={comment.id}>
-            <FontAwesomeIcon
-              style={deleteCommentStyle}
-              data-id={comment.id}
-              onClick={this.handleDelete}
-              icon={faTrashAlt}
-            />
-            {comment.text}
-          </li>
+          <div key={comment.id}>
+            <li style={commentStyle} key={comment.id}>
+              <FontAwesomeIcon
+                style={deleteCommentStyle}
+                data-id={comment.id}
+                onClick={this.handleDelete}
+                icon={faTrashAlt}
+              />
+              {comment.text}
+            </li>
+          </div>
         );
       });
     }
@@ -92,14 +96,15 @@ class CommentList extends Component {
         <ul style={listStyle}>{comments ? comments : ''}</ul>
         <Form style={formStyle} onSubmit={this.handleSubmit}>
           <input
+            style={{ marginTop: '20px' }}
             onChange={this.handleChange}
             type="text"
             name="comment"
             value={this.state.comment}
             placeholder="New comment"
           />
-          <Button style={addCommentStyle} outline color="success">
-            <FontAwesomeIcon icon={faCheck} />
+          <Button style={addCommentStyle} color="transparent">
+            <FontAwesomeIcon style={{ color: 'green' }} icon={faCheck} />
           </Button>
         </Form>
       </div>

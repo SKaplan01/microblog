@@ -5,7 +5,6 @@ import { Card, CardTitle, CardGroup, CardSubtitle, CardBody } from 'reactstrap';
 import { getTitlesFromApi, addVote } from '../actionCreators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
-import './PostList.css';
 
 //Render a list of cards which contain post data, link to specific posts.
 class PostList extends Component {
@@ -24,18 +23,45 @@ class PostList extends Component {
   }
 
   render() {
-    const style = {
-      marginLeft: '-25px',
+    const upVoteStyle = {
+      margin: '5px',
+      color: 'green',
+      cursor: 'pointer'
+    };
+
+    const downVoteStyle = {
+      margin: '5px',
+      color: 'red',
+      cursor: 'pointer'
+    };
+
+    const cardGroup = {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      flexWrap: 'wrap',
+      padding: '5px',
+      marginLeft: '-10px',
       marginTop: '10px'
     };
 
+    const postCard = {
+      maxWidth: '250px',
+      minWidth: '250px',
+      maxHeight: '400px',
+      margin: '10px',
+      border: '1px solid'
+    };
+
+    const cardBody = {
+      margin: '5px'
+    };
     let postCards;
     if (this.props.posts) {
       let { posts } = this.props;
       postCards = posts.map(post => {
         return (
-          <Card key={post.id} className="postCard">
-            <CardBody>
+          <Card key={post.id} style={postCard}>
+            <CardBody style={cardBody}>
               <Link to={`/${post.id}`}>
                 {' '}
                 <CardTitle>{post.title}</CardTitle>
@@ -44,10 +70,12 @@ class PostList extends Component {
               <p />
               <CardSubtitle>Votes: {post.votes}</CardSubtitle>
               <FontAwesomeIcon
+                style={upVoteStyle}
                 onClick={() => this.vote(post.id, 'up')}
                 icon={faThumbsUp}
               />
               <FontAwesomeIcon
+                style={downVoteStyle}
                 onClick={() => this.vote(post.id, 'down')}
                 icon={faThumbsDown}
               />
@@ -57,11 +85,7 @@ class PostList extends Component {
       });
     }
 
-    return (
-      <CardGroup style={style} className="cardGroup">
-        {postCards}
-      </CardGroup>
-    );
+    return <CardGroup style={cardGroup}>{postCards}</CardGroup>;
   }
 }
 

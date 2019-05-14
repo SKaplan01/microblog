@@ -11,6 +11,10 @@ class Header extends Component {
       fontFamily: 'archivo',
       background: 'background: linear-gradient(to right, #CFDEF3, #E0EAFC'
     };
+
+    const linkStyle = {
+      fontSize: '18px'
+    };
     return (
       <div>
         <Jumbotron style={style}>
@@ -21,11 +25,15 @@ class Header extends Component {
               icon={faBlog}
             /> */}
           </h1>
-          <h4 className="lead">Get in the Rithm of blogging.</h4>
+          <h3 className="lead">Get in the rhythm of blogging.</h3>
           <hr className="my-2" />
-          <Link to="/">Blog </Link>
+          <Link style={linkStyle} to="/">
+            Blog{' '}
+          </Link>
           <br />
-          <Link to="/new">Add a new post</Link>
+          <Link style={linkStyle} to="/new">
+            Add a new post
+          </Link>
         </Jumbotron>
       </div>
     );
