@@ -79,9 +79,7 @@ class Post extends Component {
     const voteDiv = {
       margin: '5px'
     };
-    if (!this.props.post) {
-      return <NotFound />;
-    }
+
     return (
       <div style={style}>
         <h1>{this.props.post.title}</h1>
