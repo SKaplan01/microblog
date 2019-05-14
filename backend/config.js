@@ -4,6 +4,8 @@ const SECRET = process.env.SECRET_KEY || 'test';
 
 const PORT = +process.env.PORT || 3001;
 
+console.log(PORT);
+
 // database is:
 //
 // - on Heroku, get from env var DATABASE_URL
