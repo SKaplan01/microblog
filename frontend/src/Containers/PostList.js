@@ -5,17 +5,24 @@ import { Card, CardTitle, CardGroup, CardSubtitle, CardBody } from 'reactstrap';
 import { getTitlesFromApi, addVote } from '../actionCreators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import Loader from 'react-loader-spinner';
 
 //Render a list of cards which contain post data, link to specific posts.
 class PostList extends Component {
   constructor(props) {
     super(props);
     this.vote = this.vote.bind(this);
+    this.state = {
+      loading: true
+    };
   }
   //loads title, description and votes from API
   //(component will then get new props from mapStateToProps)
   componentDidMount() {
     this.props.getTitlesFromApi();
+    this.setState({
+      loading: false
+    });
   }
 
   vote(id, direction) {
@@ -56,6 +63,15 @@ class PostList extends Component {
     const cardBody = {
       margin: '5px'
     };
+
+    if (this.state.loading) {
+      return (
+        <div className="title-list-container">
+          <Loader type="Triangle" color="#7FDBFF" height="100" width="100" />
+        </div>
+      );
+    }
+
     let postCards;
     if (this.props.posts) {
       let { posts } = this.props;
