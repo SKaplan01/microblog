@@ -44,7 +44,7 @@ _Set up the frontend:_
 
 **Here's a sample page (home page):**
 
-![alt text](https://github.com/hasierpastor/react_jobly/blob/master/images/Microblog.jpg 'Home Page')
+![alt text](https://github.com/hasierpastor/microblog/blob/master/images/Microblog.jpg 'Home Page')
 
 ## Features To Add
 
