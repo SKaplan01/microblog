@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CommentList from '../Components/CommentList';
-import NotFound from '../Components/NotFound';
+// import NotFound from '../Components/NotFound';
 import { connect } from 'react-redux';
 import {
   deletePostFromApi,
@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'reactstrap';
+import Loader from 'react-loader-spinner';
 
 //Actual post => displays title, description and body
 //Can edit and remove post
@@ -24,6 +25,7 @@ class Post extends Component {
 
   //When component mounts dispatch function to get data for that specific post
   componentDidMount() {
+    console.log('HEEEEY');
     this.props.getOnePostFromApi(this.props.match.params.postid);
   }
 
@@ -39,6 +41,12 @@ class Post extends Component {
 
   //If post with this id doesn't exist, redirect to NotFound page
   render() {
+    if (!this.props.post) {
+      return (
+        <Loader type="Triangle" color="#7FDBFF" height="100" width="100" />
+      );
+    }
+
     const style = {
       margin: '25px',
       fontFamily: 'archivo',
@@ -135,6 +143,7 @@ class Post extends Component {
 
 //find post from redux store using url param
 function mapStateToProps(reduxState, ownProps) {
+  console.log(reduxState);
   return {
     post: reduxState.posts[ownProps.match.params.postid]
   };

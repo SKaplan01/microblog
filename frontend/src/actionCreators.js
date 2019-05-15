@@ -116,8 +116,6 @@ function editedPost(post) {
 export function editPostApi(post, postId) {
   return async function(dispatch) {
     try {
-      console.log(post);
-      console.log(postId);
       let resp = await axios.put(`${BASE_URL}api/posts/${postId}`, post);
       await dispatch(editedPost(resp.data));
       await dispatch(getTitlesFromApi());
@@ -126,10 +124,6 @@ export function editPostApi(post, postId) {
     }
   };
 }
-
-// function deletedPostFromStore(postId) {
-//   return { type: DELETE_POST, postId };
-// }
 
 //Redux thunk function that deletes post from API - - gets posts from API once post has been deleted
 //Updates redux state with titles

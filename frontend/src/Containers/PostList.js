@@ -18,8 +18,8 @@ class PostList extends Component {
   }
   //loads title, description and votes from API
   //(component will then get new props from mapStateToProps)
-  componentDidMount() {
-    this.props.getTitlesFromApi();
+  async componentDidMount() {
+    await this.props.getTitlesFromApi();
     this.setState({
       loading: false
     });
